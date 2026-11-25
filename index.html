@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zeros of Quadratic Functions & Solving Quadratic Equations</title>
+<style>
+*{box-sizing:border-box;margin:0}
+body{font-family:system-ui,Segoe UI,Arial,sans-serif;background:#0f172a;color:#e2e8f0;height:100vh;overflow:hidden}
+#bar{position:fixed;top:0;left:0;height:5px;background:linear-gradient(90deg,#f472b6,#38bdf8);transition:width .3s;z-index:9}
+.slide{position:absolute;inset:0;padding:5vh 7vw 11vh;display:none;flex-direction:column;justify-content:center;overflow:auto;animation:in .4s}
+.slide.on{display:flex}
+@keyframes in{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:none}}
+h1{font-size:clamp(2rem,6vw,3.4rem);background:linear-gradient(90deg,#f472b6,#38bdf8);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:.4em}
+h2{font-size:clamp(1.4rem,4vw,2.3rem);color:#38bdf8;margin-bottom:.5em}
+p,li{font-size:clamp(1rem,2.1vw,1.3rem);line-height:1.55;margin-bottom:.45em}
+ul,ol{padding-left:1.2em}
+.card{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:14px 18px;margin:7px 0}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.f{font-size:clamp(1.2rem,3.3vw,2.1rem);text-align:center;font-family:Georgia,serif;color:#fbbf24;padding:12px}
+.hl{color:#34d399;font-weight:700}.warn{color:#fb7185;font-weight:700}
+code{font-family:Georgia,serif;color:#fbbf24;font-size:1.05em}
+.step{opacity:0;transform:translateY(10px);transition:.4s}.step.show{opacity:1;transform:none}
+button{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:8px 16px;background:#38bdf8;color:#0f172a;font-weight:700}
+input{font:inherit;width:75px;padding:6px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#fff}
+#nav{position:fixed;bottom:2vh;left:0;right:0;display:flex;justify-content:center;gap:14px;align-items:center;z-index:9}
+#nav button{background:#334155;color:#fff}#cnt{min-width:60px;text-align:center}
+.q{display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap;padding:7px 0;border-bottom:1px solid #334155;font-size:clamp(.95rem,2vw,1.15rem)}
+.q button{background:#334155;color:#fff;padding:5px 10px}
+.q .ok{background:#16a34a}.q .no{background:#dc2626}
+small{display:block;color:#94a3b8;margin-top:4px}
+canvas{width:100%;max-width:460px;height:200px;background:#0b1220;border-radius:12px;border:1px solid #334155}
+</style></head><body>
+<div id="bar"></div>
+
+<section class="slide on">
+<h1>Quadratic Functions & Equations</h1>
+<p>Finding <span class="hl">zeros</span> and solving by <b>extracting roots, factoring,</b> and the <b>quadratic formula</b>.</p>
+<div class="card"><p>You will learn: what a zero is · factored vs standard form · 3 solving methods · real-life word problems.</p></div>
+<small>Use ← → keys, the buttons below, or swipe.</small>
+</section>
+
+<section class="slide">
+<h2>Key Ideas</h2>
+<div class="row">
+<div class="card"><b class="hl">Zeros</b> (roots, x-intercepts): the values of x where <code>f(x) = 0</code>. On the graph, where the parabola crosses the x-axis.</div>
+<div class="card"><b class="hl">Standard form</b><br><code>f(x) = ax² + bx + c</code>, a ≠ 0.<br>a, b, c shape and position the parabola.</div>
+<div class="card"><b class="hl">Factored form</b><br><code>f(x) = a(x − r₁)(x − r₂)</code><br>The zeros r₁ and r₂ are visible right away.</div></div>
+<div class="card"><b>Zero Product Property:</b> if A · B = 0, then A = 0 or B = 0. This is the reason we can set each factor equal to zero.</div>
+</section>
+
+<section class="slide">
+<h2>Zeros from Factored Form</h2>
+<p><b>Find the zeros of f(x) = 4(2x − 1)(3x + 4)</b></p>
+<div class="card step show">1. Let f(x) = 0 → <code>0 = 4(2x − 1)(3x + 4)</code></div>
+<div class="card step">2. Divide both sides by the constant 4 → <code>0 = (2x − 1)(3x + 4)</code> <small>The leading number never changes the zeros.</small></div>
+<div class="card step">3. Set each factor to 0 → <code>2x − 1 = 0</code> and <code>3x + 4 = 0</code></div>
+<div class="card step">4. Solve → <span class="hl">x = 1/2</span> and <span class="hl">x = −4/3</span></div>
+<button onclick="reveal(this)">Show next step</button>
+<small>More: 2(x−3)(x+5) → 3, −5 · −1(x+2)(x−4) → −2, 4</small>
+</section>
+
+<section class="slide">
+<h2>Zeros from Standard Form</h2>
+<p><b>Rule:</b> factor first, then do the same steps as before.</p>
+<div class="row">
+<div class="card"><b>f(x) = x² + 2x − 15</b><br>Need two numbers: product −15, sum +2 → 5 and −3.<br><code>(x + 5)(x − 3) = 0</code><br>Zeros: <span class="hl">−5 and 3</span></div>
+<div class="card"><b>f(x) = 6x² − 7x − 20</b><br><code>(2x − 5)(3x + 4) = 0</code><br>2x − 5 = 0 → x = 5/2<br>3x + 4 = 0 → x = −4/3<br>Zeros: <span class="hl">5/2 and −4/3</span></div></div>
+<p><b>Check:</b> (2x−5)(3x+4) = 6x² + 8x − 15x − 20 = 6x² − 7x − 20 ✓</p>
+</section>
+
+<section class="slide">
+<h2>Ways to Solve ax² + bx + c = 0</h2>
+<div class="row">
+<div class="card"><b class="hl">A. Extracting roots</b><br>Best when there is no x-term: <code>x² = k</code></div>
+<div class="card"><b class="hl">B. Factoring</b><br>Best when the expression factors nicely.</div>
+<div class="card"><b class="hl">C. Completing the square</b><br>Rewrites into a perfect square (covered in other lessons).</div>
+<div class="card"><b class="hl">D. Quadratic formula</b><br>Works on <b>every</b> quadratic equation.</div></div>
+<p><b>Tip:</b> Always try the easiest method first, then use the formula if stuck.</p>
+</section>
+
+<section class="slide">
+<h2>Extracting Square Roots</h2>
+<p>Write the equation as <code>x² = k</code>, then look at k:</p>
+<div class="row">
+<div class="card"><b>k &gt; 0</b><br>two real roots: <code>x = ±√k</code></div>
+<div class="card"><b>k = 0</b><br>one real root: <code>x = 0</code></div>
+<div class="card"><b>k &lt; 0</b><br><span class="warn">no real roots</span></div></div>
+<div class="card"><b>x² − 16 = 0</b> → x² = 16 → <span class="hl">x = ±4</span><br>
+<b>6x² = 72</b> → x² = 12 → x = ±√(4·3) → <span class="hl">x = ±2√3</span><br>
+<b>s² + 9 = 0</b> → s² = −9 → <span class="warn">no real solution</span></div>
+<small>Check x = 4 and x = −4 in x² − 16: 16 − 16 = 0 ✓</small>
+</section>
+
+<section class="slide">
+<h2>Solving by Factoring</h2>
+<div class="row">
+<div class="card"><b>Common monomial</b><br><code>ab + ac = a(b + c)</code></div>
+<div class="card"><b>Difference of two squares</b><br><code>x² − 9 = (x+3)(x−3)</code></div>
+<div class="card"><b>Quadratic trinomial</b><br><code>x² − 5x + 6 = (x−3)(x−2)</code></div></div>
+<ol><li>Write in standard form (= 0).</li><li>Factor.</li><li>Set each factor = 0.</li><li>Solve each equation.</li><li>Check in the original equation.</li></ol>
+<div class="card"><b>x² + 9x = −8</b> → x² + 9x + 8 = 0 → (x+1)(x+8) = 0 → <span class="hl">x = −1, x = −8</span><br>
+<b>9x² − 4 = 0</b> → (3x+2)(3x−2) = 0 → <span class="hl">x = −2/3, x = 2/3</span></div>
+</section>
+
+<section class="slide">
+<h2>The Quadratic Formula</h2>
+<div class="card f">x = [ −b ± √(b² − 4ac) ] / 2a</div>
+<p><b>Steps:</b> 1) standard form 2) find a, b, c 3) substitute 4) evaluate.</p>
+<div class="card"><b>Example: 6x − 5 = 6/x</b> → multiply by x → 6x² − 5x − 6 = 0<br>a = 6, b = −5, c = −6<br>x = [5 ± √(25 + 144)] / 12 = (5 ± 13)/12<br><span class="hl">x = 3/2</span> or <span class="hl">x = −2/3</span></div>
+<p><b>Discriminant D = b² − 4ac:</b> D &gt; 0 → two real roots · D = 0 → one root · D &lt; 0 → <span class="warn">no real roots</span></p>
+</section>
+
+<section class="slide">
+<h2>Try It: Solver & Graph</h2>
+<div class="card">a = <input id="a" type="number" value="1"> b = <input id="b" type="number" value="2"> c = <input id="c" type="number" value="-15"> <button onclick="solve()">Solve</button></div>
+<div class="card" id="out">Press Solve.</div>
+<canvas id="cv" width="460" height="200"></canvas>
+</section>
+
+<section class="slide">
+<h2>Word Problems</h2>
+<p><b>Steps:</b> understand → write the function → know what is asked → use the easiest method.</p>
+<div class="row">
+<div class="card"><b>Two numbers, sum 18, greatest product</b><br>f(x) = x(18 − x) = −x² + 18x<br>Vertex x = −b/2a = −18/−2 = 9<br><span class="hl">Numbers: 9 and 9</span></div>
+<div class="card"><b>T-shirts: 40 sold at ₱100; each ₱10 drop sells 5 more</b><br>R(x) = (40+5x)(100−10x) = −50x² + 100x + 4000<br>Vertex (1, 4050)<br><span class="hl">Max revenue ₱4,050 at price ₱90</span></div>
+<div class="card"><b>Father = 5 × son. Next year father = (son last year)²</b><br>5x + 1 = (x−1)² → x² − 7x = 0<br>x(x − 7) = 0 → x = 7<br><span class="hl">Son 7, father 35</span></div></div>
+<small>Note: the vertex of a downward parabola is its <b>maximum</b>.</small>
+</section>
+
+<section class="slide">
+<h2>Quick Check: Easiest Method?</h2>
+<div id="quiz"></div><p id="score" class="hl"></p>
+<small>E = Extract roots · F = Factor · Q = Quadratic formula</small>
+</section>
+
+<section class="slide">
+<h2>Summary</h2>
+<ul>
+<li>Zeros = x-values where f(x) = 0 (x-intercepts).</li>
+<li>Factored form shows zeros directly; standard form → factor first.</li>
+<li>x² = k → ±√k · Factoring → zero product property · Formula → works always.</li>
+<li>For maximum/minimum problems, use the vertex x = −b/2a.</li>
+<li>Always <b>check</b> answers in the original equation.</li></ul>
+<div class="card f">Great job! 🎉</div>
+</section>
+
+<div id="nav"><button onclick="go(-1)">◀ Prev</button><span id="cnt"></span><button onclick="go(1)">Next ▶</button></div>
+<script>
+const S=[...document.querySelectorAll('.slide')];let i=0;
+function show(){S.forEach((s,k)=>s.classList.toggle('on',k==i));
+bar.style.width=(i+1)/S.length*100+'%';cnt.textContent=(i+1)+' / '+S.length}
+function go(d){i=Math.max(0,Math.min(S.length-1,i+d));show()}
+addEventListener('keydown',e=>{if(e.key=='ArrowRight')go(1);if(e.key=='ArrowLeft')go(-1)});
+let x0;addEventListener('touchstart',e=>x0=e.touches[0].clientX);
+addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-x0;if(Math.abs(d)>60)go(d<0?1:-1)});
+function reveal(b){const h=b.parentNode.querySelector('.step:not(.show)');if(h)h.classList.add('show');else b.textContent='All steps shown ✓'}
+const gcd=(p,q)=>q?gcd(q,p%q):Math.abs(p);
+function fr(n,d){const g=gcd(n,d);n/=g;d/=g;if(d<0){n=-n;d=-d}return d==1?''+n:n+'/'+d}
+function solve(){const a=+A.value,b=+B.value,c=+C.value,o=out;
+if(!a){o.innerHTML='<span class="warn">a cannot be 0.</span>';return}
+const D=b*b-4*a*c;let h=`<p>D = b² − 4ac = ${b*b} − ${4*a*c} = <b>${D}</b></p>`;
+if(D<0)h+='<p class="warn">D &lt; 0: no real zeros</p>';
+else{const s=Math.sqrt(D),ints=[a,b,c].every(Number.isInteger),sq=Number.isInteger(s);
+const r=[(-b+s)/(2*a),(-b-s)/(2*a)];
+const t=k=>ints&&sq?fr(-b+(k?-s:s),2*a):r[k].toFixed(4).replace(/\.?0+$/,'');
+h+=D==0?`<p class="hl">One zero: x = ${t(0)}</p>`:`<p class="hl">Zeros: x = ${t(0)} and x = ${t(1)}</p>`}
+const vx=-b/(2*a);h+=`<small>Vertex x = −b/2a = ${+vx.toFixed(3)}, opens ${a>0?'up (minimum)':'down (maximum)'}</small>`;
+o.innerHTML=h;draw(a,b,c,vx)}
+const A=document.getElementById('a'),B=document.getElementById('b'),C=document.getElementById('c'),out=document.getElementById('out');
+function draw(a,b,c,vx){const cv=document.getElementById('cv'),g=cv.getContext('2d'),W=cv.width,H=cv.height;
+g.clearRect(0,0,W,H);const x1=vx-6,x2=vx+6,f=x=>a*x*x+b*x+c;let lo=Infinity,hi=-Infinity;
+for(let k=0;k<=60;k++){const y=f(x1+k*(x2-x1)/60);lo=Math.min(lo,y);hi=Math.max(hi,y)}
+lo=Math.min(lo,0);hi=Math.max(hi,0);const p=(hi-lo)*.1||1;lo-=p;hi+=p;
+const X=x=>(x-x1)/(x2-x1)*W,Y=y=>H-(y-lo)/(hi-lo)*H;
+g.strokeStyle='#64748b';g.beginPath();g.moveTo(0,Y(0));g.lineTo(W,Y(0));if(x1<0&&x2>0){g.moveTo(X(0),0);g.lineTo(X(0),H)}g.stroke();
+g.strokeStyle='#38bdf8';g.lineWidth=3;g.beginPath();
+for(let k=0;k<=200;k++){const x=x1+k*(x2-x1)/200;k?g.lineTo(X(x),Y(f(x))):g.moveTo(X(x),Y(f(x)))}g.stroke();
+const D=b*b-4*a*c;if(D>=0)[1,-1].forEach(sg=>{const r=(-b+sg*Math.sqrt(D))/(2*a);g.fillStyle='#34d399';g.beginPath();g.arc(X(r),Y(0),6,0,7);g.fill()})}
+const Q=[["x² = 49","E"],["x² + 5x + 6 = 0","F"],["x² + 3x − 5 = 0","Q"],["9x² − 25 = 0","E"],["x² − 8x + 15 = 0","F"]];
+let sc=0,dn=0;Q.forEach(([t,a])=>{const d=document.createElement('div');d.className='q';
+d.innerHTML=`<span>${t}</span><span><button>E</button> <button>F</button> <button>Q</button></span>`;
+d.querySelectorAll('button').forEach(b=>b.onclick=()=>{if(d.dataset.d)return;d.dataset.d=1;dn++;
+const ok=b.textContent==a;if(ok)sc++;b.classList.add(ok?'ok':'no');
+score.textContent=`Score: ${sc} / ${dn}`+(dn==Q.length?' — finished!':'')});
+quiz.appendChild(d)});
+show();
+</script></body></html>
